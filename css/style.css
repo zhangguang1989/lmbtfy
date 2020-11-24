@@ -126,18 +126,6 @@ html, body {
     font-size: 16px;
 }
 
-#stop {
-    display: none;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 100px;
-    color: #bababa;
-    background: #f1f1f1;
-    outline: none;
-    cursor: pointer;
-    margin-top: 50px;
-}
-
 #output {
     display: none;
     width: 100%;
@@ -326,10 +314,6 @@ html, body {
         top: 0;
         margin-top: 50px;
         padding: 0 10px;
-    }
-    
-    #stop {
-        margin-top: 30px;
     }
     
     #footer {

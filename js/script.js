@@ -25,7 +25,6 @@ $(function() {
         $searchSubmit = $('#search-submit'),
         $urlOutput = $('#url-output'),
         $tips = $('#tips'),
-        $stop = $('#stop'),
         $arrow = $('#arrow');
     
     var stepTimeout, typeInterval;
@@ -42,17 +41,16 @@ $(function() {
     
     /* 有参数，启动百度教程 */
     if(!!query) {
-        $tips.html('让我来教你正确的打开方式');
-        $stop.fadeIn();
+        $tips.html('需要我帮你百度么');
         
         stepTimeout = setTimeout(function() {
-            $tips.html('1、找到输入框并选中');
+            $tips.html('1、把鼠标放到输入框上');
             
             $arrow.removeClass('active').show().animate({
                 left: $kw.offset().left + 20 + 'px',
                 top: ($kw.offset().top + $kw.outerHeight() / 2) + 'px'
             }, 2000, function () {
-                $tips.html('2、输入你要找的内容');
+                $tips.html('2、输入你的问题');
                 $arrow.addClass('active');
                 
                 stepTimeout = setTimeout(function() {
@@ -63,13 +61,13 @@ $(function() {
                         $kw.val(query.substr(0, i));
                         if (++i > query.length) {
                             clearInterval(typeInterval);
-                            $tips.html('3、点击下“百度一下”按钮');
+                            $tips.html('3、按下“百度一下”按钮');
                             
                             $arrow.removeClass('active').fadeIn().animate({
                                 left: $searchSubmit.offset().left + $searchSubmit.width()  / 2 + 'px',
                                 top:  $searchSubmit.offset().top  + $searchSubmit.height() / 2 + 'px'
                             }, 1000, function () {
-                                $tips.html('<strong>怎么样，学会了吗？</strong>');
+                                $tips.html('<strong>这对你而言就是这么困难么？</strong>');
                                 $arrow.addClass('active');
                                 
                                 stepTimeout = setTimeout(function () {
@@ -82,17 +80,6 @@ $(function() {
             });
         }, 1000);
     }
-    
-    /* 自己人，停下 */ 
-    $stop.click(function() {
-        clearTimeout(stepTimeout);
-        clearInterval(typeInterval);
-        $stop.hide();
-        $arrow.stop().hide();
-        $kw.val(query);
-        query = false;
-        $tips.html('输入一个问题，然后点击百度一下');
-    });
     
     /* 提交 */
     $('#search-form').submit(function() {
